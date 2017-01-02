@@ -99,12 +99,39 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
+    public function testSuccessGetHitL1()
+    {
+        $this->db->setData(['space.cs' => ['name' => 'test content db']]);
+        $content = $this->contentProvider->getContent('space', 'cs', 'name');
+        Assert::same('test content db', $content);
+
+        $this->cache->data = [];
+        $this->db->data = [];
+        $content = $this->contentProvider->getContent('space', 'cs', 'name');
+        Assert::same('test content db', $content);
+    }
+
+    /**
+     *
+     */
     public function testFallbackGet()
     {
         $this->db->setData(['space.en' => ['name' => 'test content DB']]);
         $contentProvider = new ContentProvider(['fallback' => 'en'], $this->cache, $this->db);
         $content = $contentProvider->getContent('space', 'cs', 'name');
         Assert::same('test content DB', $content);
+    }
+
+    /**
+     *
+     */
+    public function testSaveContent()
+    {
+        $this->contentProvider->saveContent('space', 'cs', 'name', 'content string');
+        Assert::same([], $this->cache->data);
+        Assert::same(['space.cs' => ['name' => 'content string']], $this->db->data);
+        $content = $this->contentProvider->getContent('space', 'cs', 'name');
+        Assert::same('content string', $content);
     }
 }
 
