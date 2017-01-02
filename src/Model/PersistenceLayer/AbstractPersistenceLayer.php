@@ -75,7 +75,7 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
      */
     public function saveContent(string $namespace, string $name, string $locale, string $content): bool
     {
-        $sql = 'INSERT INTO ' . $this->tableName . ' (namespace, name, locale, content) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO ' . $this->tableName . ' (namespace, name, locale, content) VALUES (?, ?, ?, ?) ';
 
         $driver = $this->detectDbDriver();
 

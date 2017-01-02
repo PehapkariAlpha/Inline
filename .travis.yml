@@ -1,10 +1,19 @@
 language: php
 
-services:
-    - mysql
-    - postgresql
+dist: trusty
 
 sudo: false
+
+services:
+    - postgresql
+
+addons:
+    postgresql: '9.6' # require 9.5+ (on conflict query)
+    apt:
+        packages:
+            - mysql-server-5.6
+            - mysql-client-core-5.6
+            - mysql-client-5.6
 
 cache:
     directories:
@@ -13,7 +22,6 @@ cache:
 
 php:
     - 7.0
-    - 7.1
 
 install:
     - composer install --no-interaction --prefer-source
@@ -24,7 +32,7 @@ before_script:
     - psql inline < tests/sql/postgres.sql
 
     # Init Mysql database
-    - mysql -e 'CREATE DATABASE IF NOT EXISTS inline;' -u root
+    - mysql -e "CREATE DATABASE IF NOT EXISTS inline; GRANT ALL ON inline.* TO 'root'@'localhost' IDENTIFIED BY ''; SELECT host,user,plugin,authentication_string FROM mysql.user;" -u root
     - mysql -u root inline < tests/sql/mysql.sql
 
 script:
