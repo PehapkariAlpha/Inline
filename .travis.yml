@@ -28,7 +28,7 @@ before_script:
     - mysql -u root inline < tests/sql/mysql.sql
 
 script:
-    - phpunit --coverage-clover coverage.xml
+    - php vendor/bin/tester tests -p phpdbg --coverage ./coverage.xml --coverage-src ./src
 
 after_script:
     # Report Code Coverage

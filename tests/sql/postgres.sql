@@ -1,13 +1,4 @@
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET search_path = public, pg_catalog;
+SET search_path = public;
 
 SET default_tablespace = '';
 
@@ -24,7 +15,7 @@ CREATE TABLE inline_content (
 );
 
 
-ALTER TABLE inline_content OWNER TO root;
+ALTER TABLE inline_content OWNER TO postgres;
 
 CREATE SEQUENCE inline_content_id_seq
     START WITH 1
@@ -33,7 +24,7 @@ CREATE SEQUENCE inline_content_id_seq
     NO MAXVALUE
     CACHE 1;
 
-ALTER TABLE inline_content_id_seq OWNER TO root;
+ALTER TABLE inline_content_id_seq OWNER TO postgres;
 ALTER SEQUENCE inline_content_id_seq OWNED BY inline_content.id;
 ALTER TABLE ONLY inline_content ALTER COLUMN id SET DEFAULT nextval('inline_content_id_seq'::regclass);
 SELECT pg_catalog.setval('inline_content_id_seq', 1, false);
