@@ -1,13 +1,15 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Mock;
+declare(strict_types = 1);
 
-use Pehapkari\Inline\Model\PersistenceLayerInterface;
+namespace Pehapkari\InlineEditable\Tests\Mock;
+
+use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
  */
-class PersistenceLayer implements PersistenceLayerInterface
+final class PersistenceLayer implements PersistenceLayerInterface
 {
     /**
      * @var array

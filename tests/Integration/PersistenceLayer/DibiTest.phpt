@@ -1,11 +1,14 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Integration\PersistentLayer;
+declare(strict_types = 1);
+
+namespace Pehapkari\InlineEditable\Tests\Integration\PersistentLayer;
 
 use Dibi\Connection;
-use Pehapkari\Inline\Model\PersistenceLayer\Dibi;
+use Pehapkari\InlineEditable\Model\PersistenceLayer\Dibi;
 use Tester\Environment;
 
+require __DIR__ . '/../../bootstrap.php';
 require __DIR__ . '/BaseTest.php';
 
 /**

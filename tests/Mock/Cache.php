@@ -1,11 +1,11 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Mock;
+declare(strict_types = 1);
+
+namespace Pehapkari\InlineEditable\Tests\Mock;
 
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-
-require_once __DIR__ . '/CacheItem.php';
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>

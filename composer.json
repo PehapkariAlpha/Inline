@@ -1,10 +1,11 @@
 {
-  "name": "pehapkari/inline",
+  "name": "pehapkari/inline-editable",
   "type": "library",
-  "description": "Content inline editable bundle for Symfony.",
+  "description": "Content inline editable package.",
   "keywords": [
-    "symfony",
-    "pehapkari-bee"
+    "content editable",
+    "pehapkari",
+    "nette"
   ],
   "homepage": "http://pehapkari.cz",
   "license": "MIT",
@@ -22,7 +23,8 @@
     "nette/tester": "@dev",
     "doctrine/dbal": "^2.5",
     "nette/database": "^2.4",
-    "dibi/dibi": "^3.0"
+    "dibi/dibi": "^3.0",
+    "squizlabs/php_codesniffer": "^2.7"
   },
   "suggest": {
     "doctrine/dbal": "If you wanna use DBAL persistence layer",
@@ -30,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pehapkari\\Inline\\": "src/"
+      "Pehapkari\\InlineEditable\\": "src/"
     }
   }
 }

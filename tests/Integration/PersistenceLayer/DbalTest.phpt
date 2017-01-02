@@ -1,12 +1,15 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Integration\PersistentLayer;
+declare(strict_types = 1);
+
+namespace Pehapkari\InlineEditable\Tests\Integration\PersistentLayer;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
-use Pehapkari\Inline\Model\PersistenceLayer\Dbal;
+use Pehapkari\InlineEditable\Model\PersistenceLayer\Dbal;
 use Tester\Environment;
 
+require __DIR__ . '/../../bootstrap.php';
 require __DIR__ . '/BaseTest.php';
 
 /**

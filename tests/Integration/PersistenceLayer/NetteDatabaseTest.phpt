@@ -1,11 +1,14 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Integration\PersistentLayer;
+declare(strict_types = 1);
+
+namespace Pehapkari\InlineEditable\Tests\Integration\PersistentLayer;
 
 use Nette\Database\Connection;
-use Pehapkari\Inline\Model\PersistenceLayer\NetteDatabase;
+use Pehapkari\InlineEditable\Model\PersistenceLayer\NetteDatabase;
 use Tester\Environment;
 
+require __DIR__ . '/../../bootstrap.php';
 require __DIR__ . '/BaseTest.php';
 
 /**

@@ -8,7 +8,7 @@
 
 declare(strict_types = 1);
 
-namespace Pehapkari\Inline\Model;
+namespace Pehapkari\InlineEditable\Model;
 
 use Psr\Cache\CacheItemPoolInterface;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Integration\PersistentLayer;
+declare(strict_types=1);
 
-use Pehapkari\Inline\Model\PersistenceLayerInterface;
+namespace Pehapkari\InlineEditable\Tests\Integration\PersistentLayer;
+
+use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
 use Tester\Assert;
 use Tester\TestCase;
-
-require __DIR__ . '/../../bootstrap.php';
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>

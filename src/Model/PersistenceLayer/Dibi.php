@@ -8,7 +8,7 @@
 
 declare(strict_types = 1);
 
-namespace Pehapkari\Inline\Model\PersistenceLayer;
+namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
 
 use Dibi\Connection;
 

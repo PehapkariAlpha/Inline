@@ -1,14 +1,17 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Unit\Model;
+declare(strict_types = 1);
 
-use Pehapkari\Inline\Model\ContentProvider;
-use Pehapkari\Inline\Tests\Mock\Cache;
-use Pehapkari\Inline\Tests\Mock\PersistenceLayer;
+namespace Pehapkari\InlineEditable\Tests\Unit\Model;
+
+use Pehapkari\InlineEditable\Model\ContentProvider;
+use Pehapkari\InlineEditable\Tests\Mock\Cache;
+use Pehapkari\InlineEditable\Tests\Mock\PersistenceLayer;
 use Tester\Assert;
 use Tester\TestCase;
 
 require __DIR__ . '/../../bootstrap.php';
+require __DIR__ . '/../../Mock/CacheItem.php';
 require __DIR__ . '/../../Mock/Cache.php';
 require __DIR__ . '/../../Mock/PersistenceLayer.php';
 

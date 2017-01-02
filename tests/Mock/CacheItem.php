@@ -1,6 +1,8 @@
 <?php
 
-namespace Pehapkari\Inline\Tests\Mock;
+declare(strict_types = 1);
+
+namespace Pehapkari\InlineEditable\Tests\Mock;
 
 use Psr\Cache\CacheItemInterface;
 

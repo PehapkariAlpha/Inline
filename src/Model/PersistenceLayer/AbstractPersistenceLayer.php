@@ -8,9 +8,9 @@
 
 declare(strict_types = 1);
 
-namespace Pehapkari\Inline\Model\PersistenceLayer;
+namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
 
-use Pehapkari\Inline\Model\PersistenceLayerInterface;
+use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
