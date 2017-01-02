@@ -1,0 +1,36 @@
+{
+  "name": "pehapkari/inline",
+  "type": "library",
+  "description": "Content inline editable bundle for Symfony.",
+  "keywords": [
+    "symfony",
+    "pehapkari-bee"
+  ],
+  "homepage": "http://pehapkari.cz",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jakub Janata",
+      "email": "jakubjanata@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "psr/cache": "^1.0"
+  },
+  "require-dev": {
+    "nette/tester": "@dev",
+    "doctrine/dbal": "^2.5",
+    "nette/database": "^2.4",
+    "dibi/dibi": "^3.0"
+  },
+  "suggest": {
+    "doctrine/dbal": "If you wanna use DBAL persistence layer",
+    "nette/database": "If you wanna use Nette Database persistence layer"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pehapkari\\Inline\\": "src/"
+    }
+  }
+}
