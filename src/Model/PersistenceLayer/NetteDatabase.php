@@ -28,8 +28,8 @@ class NetteDatabase extends AbstractPersistenceLayer
      */
     public function __construct(string $tableName, Connection $connection)
     {
-        $this->connection = $connection;
         parent::__construct($tableName);
+        $this->connection = $connection;
     }
 
     /**

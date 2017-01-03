@@ -10,6 +10,7 @@ declare(strict_types = 1);
 
 namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
 
+use Exception;
 use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
 
 /**
@@ -61,7 +62,7 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
      */
     public function getNamespaceContent(string $namespace, string $locale): array
     {
-        $sql = 'SELECT name, content FROM ' . $this->tableName . ' WHERE namespace = ? AND locale = ?';
+        $sql = "SELECT name, content FROM $this->tableName WHERE namespace = ? AND locale = ?";
         return $this->getKeyPairResult($sql, [$namespace, $locale]);
     }
 
@@ -71,20 +72,20 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
      * @param string $locale
      * @param string $content
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function saveContent(string $namespace, string $name, string $locale, string $content): bool
     {
-        $sql = 'INSERT INTO ' . $this->tableName . ' (namespace, name, locale, content) VALUES (?, ?, ?, ?) ';
+        $sql = "INSERT INTO $this->tableName (namespace, name, locale, content) VALUES (?, ?, ?, ?) ";
 
         $driver = $this->detectDbDriver();
 
         if ($driver === 'mysql') {
-            $sql .= 'ON DUPLICATE KEY UPDATE content = VALUES(content)';
+            $sql = "$sql ON DUPLICATE KEY UPDATE content = VALUES(content)";
         } elseif ($driver === 'pgsql') {
-            $sql .= 'ON CONFLICT (namespace, name, locale) DO UPDATE SET content = EXCLUDED.content';
+            $sql = "$sql ON CONFLICT (namespace, name, locale) DO UPDATE SET content = EXCLUDED.content";
         } else {
-            throw new \Exception('Unknown driver "' . $driver . '"');
+            throw new Exception("Unknown driver '$driver'");
         }
 
         return $this->updateOrInsertRecord($sql, [$namespace, $name, $locale, $content]);

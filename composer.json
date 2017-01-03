@@ -24,7 +24,8 @@
     "doctrine/dbal": "^2.5",
     "nette/database": "^2.4",
     "dibi/dibi": "^3.0",
-    "squizlabs/php_codesniffer": "^2.7"
+    "squizlabs/php_codesniffer": "^2.7",
+    "phpstan/phpstan": "^0.5.1"
   },
   "suggest": {
     "doctrine/dbal": "If you wanna use DBAL persistence layer",
@@ -33,6 +34,11 @@
   "autoload": {
     "psr-4": {
       "Pehapkari\\InlineEditable\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Pehapkari\\InlineEditable\\Tests\\": "tests/"
     }
   }
 }

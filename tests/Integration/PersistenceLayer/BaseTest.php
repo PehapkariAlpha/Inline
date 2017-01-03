@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Integration\PersistentLayer;
+namespace Pehapkari\InlineEditable\Tests\Integration\PersistenceLayer;
 
 use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
 use Tester\Assert;

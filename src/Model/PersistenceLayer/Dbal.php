@@ -26,12 +26,11 @@ class Dbal extends AbstractPersistenceLayer
      * Doctrine constructor.
      * @param string $tableName
      * @param Connection $connection
-     * @internal param EntityManager $entityManager
      */
     public function __construct(string $tableName, Connection $connection)
     {
-        $this->connection = $connection;
         parent::__construct($tableName);
+        $this->connection = $connection;
     }
 
     /**
