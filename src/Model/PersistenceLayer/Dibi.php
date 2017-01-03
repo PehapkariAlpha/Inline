@@ -11,6 +11,9 @@ declare(strict_types = 1);
 namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
 
 use Dibi\Connection;
+use Dibi\Exception;
+use InvalidArgumentException;
+use PDO;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
@@ -29,13 +32,18 @@ class Dibi extends AbstractPersistenceLayer
     public function __construct(string $tableName, Connection $connection)
     {
         parent::__construct($tableName);
+
         $this->connection = $connection;
     }
 
     /**
      * @param string $sql
      * @param array $args
+     *
      * @return array
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     protected function getKeyPairResult(string $sql, array $args): array
     {
@@ -45,11 +53,15 @@ class Dibi extends AbstractPersistenceLayer
     /**
      * @param string $sql
      * @param array $args
+     *
      * @return bool
+     *
+     * @throws Exception
      */
     protected function updateOrInsertRecord(string $sql, array $args): bool
     {
         $this->connection->query($sql, $args[0], $args[1], $args[2], $args[3]);
+
         return true;
     }
 
@@ -61,7 +73,7 @@ class Dibi extends AbstractPersistenceLayer
         $driverName = $this->connection->getConfig('driver', '');
 
         return ($driverName === 'pdo') ?
-            $this->connection->getDriver()->getResource()->getAttribute(\PDO::ATTR_DRIVER_NAME) :
+            $this->connection->getDriver()->getResource()->getAttribute(PDO::ATTR_DRIVER_NAME) :
             $driverName;
     }
 }

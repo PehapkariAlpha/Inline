@@ -11,6 +11,7 @@ declare(strict_types = 1);
 namespace Pehapkari\InlineEditable\Model;
 
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Cache\InvalidArgumentException;
 
 /**
  * CACHING LEVELS
@@ -73,14 +74,17 @@ class ContentProvider
      * @param string $namespace
      * @param string $locale
      * @param string $name
+     *
      * @return string
+     *
+     * @throws InvalidArgumentException
      */
     public function getContent(string $namespace, string $locale, string $name): string
     {
-        $nKey = self::getNKey($namespace, $locale);
+        $namespaceKey = self::getNamespaceKey($namespace, $locale);
 
         // L1 read
-        $content = $this->loadedData[$nKey][$name] ?? false;
+        $content = $this->loadedData[$namespaceKey][$name] ?? false;
 
         if (is_string($content)) {
             // L1 hit
@@ -88,18 +92,18 @@ class ContentProvider
         }
 
         // L2 read + L1 write
-        $this->loadedData[$nKey] = $this->loadedData[$nKey] ?? $this->loadNspaceFromCache($namespace, $locale);
+        $this->loadedData[$namespaceKey] = $this->loadedData[$namespaceKey] ?? $this->loadNamespaceFromCache($namespace, $locale);
 
         $fallbackLocale = $this->config['fallback'] ?? '';
-        $content = $this->loadedData[$nKey][$name] ?? false;
+        $content = $this->loadedData[$namespaceKey][$name] ?? false;
 
         if (is_string($content)) {
             return $content;
         } elseif ($locale === $fallbackLocale) {
             return '';
-        } else {
-            return $this->getContent($namespace, $fallbackLocale, $name);
         }
+
+        return $this->getContent($namespace, $fallbackLocale, $name);
     }
 
     /**
@@ -107,24 +111,31 @@ class ContentProvider
      * @param string $locale
      * @param string $name
      * @param string $content
+     *
+     * @throws InvalidArgumentException
      */
     public function saveContent(string $namespace, string $locale, string $name, string $content)
     {
-        $nKey = self::getNKey($namespace, $locale);
+        $namespaceKey = self::getNamespaceKey($namespace, $locale);
+
         // L1 + L2 clear => L3 write
-        unset($this->loadedData[$nKey]);
-        $this->cache->deleteItem($nKey);
+        unset($this->loadedData[$namespaceKey]);
+
+        $this->cache->deleteItem($namespaceKey);
         $this->persistenceLayer->saveContent($namespace, $name, $locale, $content);
     }
 
     /**
      * @param string $namespace
      * @param string $locale
+     *
      * @return array
+     *
+     * @throws InvalidArgumentException
      */
-    public function loadNspaceFromCache(string $namespace, string $locale): array
+    public function loadNamespaceFromCache(string $namespace, string $locale): array
     {
-        $nKey = self::getNKey($namespace, $locale);
+        $nKey = self::getNamespaceKey($namespace, $locale);
 
         // L2 read
         $cacheItem = $this->cache->getItem($nKey);
@@ -146,9 +157,10 @@ class ContentProvider
     /**
      * @param string $namespace
      * @param string $locale
+     *
      * @return string
      */
-    public static function getNKey(string $namespace, string $locale): string
+    public static function getNamespaceKey(string $namespace, string $locale): string
     {
         return '__inline_prefix_' . $namespace . '.' . $locale;
     }

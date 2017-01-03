@@ -11,6 +11,8 @@ declare(strict_types = 1);
 namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
+use PDO;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
@@ -30,36 +32,46 @@ class Dbal extends AbstractPersistenceLayer
     public function __construct(string $tableName, Connection $connection)
     {
         parent::__construct($tableName);
+
         $this->connection = $connection;
     }
 
     /**
      * @param string $sql
      * @param array $args
+     *
      * @return array
+     *
+     * @throws DBALException
      */
     protected function getKeyPairResult(string $sql, array $args): array
     {
         $stmt = $this->connection->prepare($sql);
+
         $stmt->bindValue(1, $args[0]);
         $stmt->bindValue(2, $args[1]);
         $stmt->execute();
 
-        return $stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
     /**
      * @param string $sql
      * @param array $args
+     *
      * @return bool
+     *
+     * @throws DBALException
      */
     protected function updateOrInsertRecord(string $sql, array $args): bool
     {
         $stmt = $this->connection->prepare($sql);
+
         $stmt->bindValue(1, $args[0]);
         $stmt->bindValue(2, $args[1]);
         $stmt->bindValue(3, $args[2]);
         $stmt->bindValue(4, $args[3]);
+
         return $stmt->execute();
     }
 
