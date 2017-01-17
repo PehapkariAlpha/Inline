@@ -1,0 +1,71 @@
+*[data-editable-namespace] {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.inline-editable {
+  border: 1px dotted #6393b5;
+  padding: 0 12px;
+}
+.inline-editable:focus {
+  border: 1px solid #d3dbe4;
+  outline: none;
+}
+.inline-editable a {
+  cursor: text;
+}
+.inline-editable.inline-disabled {
+  padding: 0;
+  border: none;
+}
+.inline-editable-btn {
+  position: fixed;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  color: white;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.inline-editable-btn.inline-hidden {
+  display: none;
+}
+.inline-editable-btn.inline-enable,
+.inline-editable-btn.inline-disable {
+  top: 5px;
+  left: 5px;
+}
+.inline-editable-btn.inline-enable {
+  background-color: #78511e;
+}
+.inline-editable-btn.inline-enable:hover {
+  background-color: #eea13c;
+}
+.inline-editable-btn.inline-disable {
+  background-color: #2c2178;
+}
+.inline-editable-btn.inline-disable:hover {
+  background-color: #514dee;
+}
+.inline-editable-btn.inline-save {
+  top: 5px;
+  left: 37px;
+  background-color: #0d7a14;
+}
+.inline-editable-btn.inline-save:hover {
+  background-color: #14b91e;
+}
+.inline-editable-btn.inline-revert {
+  top: 5px;
+  left: 69px;
+  background-color: #ba0000;
+}
+.inline-editable-btn.inline-revert:hover {
+  background-color: #e90000;
+}

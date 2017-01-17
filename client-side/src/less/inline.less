@@ -1,0 +1,81 @@
+*[data-editable-namespace] {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.inline-editable {
+  border: 1px dotted #6393b5;
+  padding: 0 12px;
+
+  &:focus {
+    border: 1px solid #d3dbe4;
+    outline: none;
+  }
+
+  a {
+    cursor: text;
+  }
+
+  &.inline-disabled {
+    padding: 0;
+    border: none;
+  }
+}
+
+.inline-editable-btn {
+  position: fixed;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  color: white;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+
+  &.inline-hidden {
+    display: none;
+  }
+
+  &.inline-enable, &.inline-disable {
+    top: 5px;
+    left: 5px;
+  }
+
+  &.inline-enable {
+    background-color: #78511e;
+    &:hover {
+      background-color: #eea13c;
+    }
+  }
+
+  &.inline-disable {
+    background-color: #2c2178;
+    &:hover {
+      background-color: #514dee;
+    }
+  }
+
+  &.inline-save {
+    top: 5px;
+    left: 37px;
+    background-color: #0d7a14;
+    &:hover {
+      background-color: #14b91e;
+    }
+  }
+
+  &.inline-revert {
+    top: 5px;
+    left: 69px;
+    background-color: #ba0000;
+    &:hover {
+      background-color: #e90000;
+    }
+  }
+}
