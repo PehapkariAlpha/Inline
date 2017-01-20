@@ -1,11 +1,10 @@
 {
-  "name": "pehapkari/inline-editable",
+  "name": "pehapkari-alpha/inline-editable",
   "type": "library",
   "description": "Content inline editable package.",
   "keywords": [
     "content editable",
-    "pehapkari",
-    "nette"
+    "pehapkari"
   ],
   "homepage": "http://pehapkari.cz",
   "license": "MIT",
@@ -29,7 +28,8 @@
   },
   "suggest": {
     "doctrine/dbal": "If you wanna use DBAL persistence layer",
-    "nette/database": "If you wanna use Nette Database persistence layer"
+    "nette/database": "If you wanna use Nette Database persistence layer",
+    "dibi/dibi": "If you wanna use Dibi persistence layer"
   },
   "autoload": {
     "psr-4": {

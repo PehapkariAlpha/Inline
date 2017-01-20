@@ -95,7 +95,7 @@ class ContentProvider
 
         if (is_string($content)) {
             return $content;
-        } elseif ($locale === $fallbackLocale) {
+        } elseif ($fallbackLocale === false || $locale === $fallbackLocale) {
             return '';
         } else {
             return $this->getContent($namespace, $fallbackLocale, $name);
