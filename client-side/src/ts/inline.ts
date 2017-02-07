@@ -14,16 +14,17 @@ class Inline {
 
     public editableConfigs: any = {
         'headings': {
-            selector: 'h1.inline-editable,' + 'h2.inline-editable,' + 'h3.inline-editable,' + 'h4.inline-editable,' + 'h5.inline-editable,' + 'h6.inline-editable'
+            selector: 'h1.inline-editable, h2.inline-editable, h3.inline-editable, h4.inline-editable, h5.inline-editable, h6.inline-editable',
+            toolbar: 'italic strikethrough | nonbreaking | undo redo',
         },
         'inlines': {
             selector: 'span.inline-editable, strong.inline-editable, a.inline-editable',
             forced_root_block: '',
-            toolbar: 'bold italic strikethrough | link | undo redo'
+            toolbar: 'bold italic strikethrough | nonbreaking | link | undo redo'
         },
         'blocks': {
             selector: 'div.inline-editable',
-            toolbar: 'bold italic strikethrough | h2 h3 | fontsizeselect | styleselect bullist numlist indent outdent link image | undo redo',
+            toolbar: 'bold italic strikethrough | nonbreaking | fontsizeselect | styleselect bullist numlist link image | undo redo',
             style_formats: [
                 {
                     title: 'Nadpisy',
@@ -33,18 +34,15 @@ class Inline {
                         {title: 'Nadpis 3', format: 'h3'},
                         {title: 'Nadpis 4', format: 'h4'},
                         {title: 'Nadpis 5', format: 'h5'},
-                        {title: 'Nadpis 6', format: 'h6'}
-                    ]
+                        {title: 'Nadpis 6', format: 'h6'}]
                 },
                 {title: 'Horní index', icon: 'superscript', format: 'superscript'},
                 {title: 'Dolní index', icon: 'subscript', format: 'subscript'},
-                {
-                    title: 'Zarovnání', icon: 'alignleft', items: [
+                {title: 'Zarovnání', icon: 'alignleft', items: [
                     {title: 'Doleva', icon: 'alignleft', format: 'alignleft'},
                     {title: 'Na střed', icon: 'aligncenter', format: 'aligncenter'},
                     {title: 'Doprava', icon: 'alignright', format: 'alignright'},
-                    {title: 'Do bloku', icon: 'alignjustify', format: 'alignjustify'}
-                ]
+                    {title: 'Do bloku', icon: 'alignjustify', format: 'alignjustify'}]
                 }
             ]
         }
@@ -127,9 +125,8 @@ class Inline {
                 entity_encoding: 'raw',
                 inline: true,
                 menubar: false,
-                toolbar: 'italic strikethrough forecolor | undo redo',
                 language: 'cs',
-                plugins: 'paste link image colorpicker textcolor',
+                plugins: 'paste link image lists nonbreaking',
                 paste_as_text: true,
                 theme: 'modern',
                 setup: function (editor: Editor) {
