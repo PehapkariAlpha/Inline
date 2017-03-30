@@ -23,9 +23,6 @@ abstract class BaseTest extends TestCase
      */
     abstract protected function initPersistentLayer();
 
-    /**
-     *
-     */
     public function setUp()
     {
         $this->initPersistentLayer();

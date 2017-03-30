@@ -18,6 +18,7 @@ interface PersistenceLayerInterface
     /**
      * @param string $namespace
      * @param string $locale
+     *
      * @return array - output format ["name" => "value", ...]
      */
     public function getNamespaceContent(string $namespace, string $locale): array;
@@ -27,6 +28,7 @@ interface PersistenceLayerInterface
      * @param string $name
      * @param string $locale
      * @param string $content
+     *
      * @return bool - TRUE on success or FALSE on failure
      */
     public function saveContent(string $namespace, string $name, string $locale, string $content): bool;

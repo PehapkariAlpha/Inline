@@ -50,8 +50,8 @@ class ContentProviderTest extends TestCase
      */
     public function testGeneratingNKey()
     {
-        $nKey = ContentProvider::getNKey('space', 'cs');
-        Assert::equal('__inline_prefix_space.cs', $nKey);
+        $nsKey = ContentProvider::getNamespaceKey('space', 'cs');
+        Assert::equal('__inline_prefix_space.cs', $nsKey);
     }
 
     /**
