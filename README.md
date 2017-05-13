@@ -18,6 +18,18 @@ Installation
 
 The best way to install XcoreCMS/InlineEditing is using [Composer](http://getcomposer.org/):
 
-```sh
+```bash
     composer require xcore/inline-editing
+```
+
+#### Create database table example
+
+```bash
+    php bin/install.php dns="mysql:host=127.0.0.1;dbname=test" username=root password=pass tableName=table
+
+    # parameters:
+    #   dns - required
+    #   username - required
+    #   password - optional
+    #   tableName - optional (default `inline_content`)
 ```
