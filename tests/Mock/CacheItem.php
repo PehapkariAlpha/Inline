@@ -1,8 +1,7 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Mock;
+namespace XcoreCMS\InlineEditing\Tests\Mock;
 
 use Psr\Cache\CacheItemInterface;
 
@@ -17,7 +16,7 @@ class CacheItem implements CacheItemInterface
     public $key;
 
     /**
-     * @var
+     * @var mixed
      */
     public $value;
 
@@ -28,7 +27,7 @@ class CacheItem implements CacheItemInterface
 
     /**
      * @param string $key
-     * @param $value
+     * @param mixed $value
      * @param bool $isHit
      */
     public function __construct(string $key, $value, bool $isHit)

@@ -1,12 +1,12 @@
 {
-  "name": "pehapkari-alpha/inline-editable",
+  "name": "xcore/inline-editing",
   "type": "library",
   "description": "Content inline editable package.",
   "keywords": [
     "content editable",
     "pehapkari"
   ],
-  "homepage": "http://pehapkari.cz",
+  "homepage": "https://appio.cz",
   "license": "MIT",
   "authors": [
     {
@@ -15,16 +15,16 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": "^7.1",
     "psr/cache": "^1.0"
   },
   "require-dev": {
-    "nette/tester": "@dev",
     "doctrine/dbal": "^2.5",
     "nette/database": "^2.4",
     "dibi/dibi": "^3.0",
-    "squizlabs/php_codesniffer": "^2.7",
-    "phpstan/phpstan": "^0.5.1"
+    "squizlabs/php_codesniffer": "^3.0",
+    "nette/tester": "dev-master",
+    "phpstan/phpstan": "dev-master"
   },
   "suggest": {
     "doctrine/dbal": "If you wanna use DBAL persistence layer",
@@ -33,12 +33,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Pehapkari\\InlineEditable\\": "src/"
+      "XcoreCMS\\InlineEditing\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Pehapkari\\InlineEditable\\Tests\\": "tests/"
+      "XcoreCMS\\InlineEditing\\Tests\\": "tests/"
     }
   }
 }

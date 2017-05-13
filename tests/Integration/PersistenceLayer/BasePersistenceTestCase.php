@@ -1,17 +1,16 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Integration\PersistenceLayer;
+namespace XcoreCMS\InlineEditing\Tests\Integration\PersistenceLayer;
 
-use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
+use XcoreCMS\InlineEditing\Model\PersistenceLayerInterface;
 use Tester\Assert;
 use Tester\TestCase;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
  */
-abstract class BaseTest extends TestCase
+abstract class BasePersistenceTestCase extends TestCase
 {
     /**
      * @var PersistenceLayerInterface
@@ -21,23 +20,23 @@ abstract class BaseTest extends TestCase
     /**
      * Init persistent layer - ex. connection to db
      */
-    abstract protected function initPersistentLayer();
+    abstract protected function initPersistentLayer(): void;
 
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->initPersistentLayer();
     }
 
-    public function testGetNamespaceContent()
+    public function testGetNamespaceContent(): void
     {
         $data = $this->persistentLayer->getNamespaceContent('spaceX', 'cs');
         Assert::type('array', $data);
     }
 
-    public function testSaveContent()
+    public function testSaveContent(): void
     {
         $result = $this->persistentLayer->saveContent('spaceX', 'nameZ', 'cs', 'contentZ');
         Assert::same(true, $result);

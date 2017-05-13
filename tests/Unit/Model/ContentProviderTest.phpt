@@ -1,19 +1,15 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Unit\Model;
+namespace XcoreCMS\InlineEditing\Tests\Unit\Model;
 
-use Pehapkari\InlineEditable\Model\ContentProvider;
-use Pehapkari\InlineEditable\Tests\Mock\Cache;
-use Pehapkari\InlineEditable\Tests\Mock\PersistenceLayer;
+use XcoreCMS\InlineEditing\Model\ContentProvider;
+use XcoreCMS\InlineEditing\Tests\Mock\Cache;
+use XcoreCMS\InlineEditing\Tests\Mock\PersistenceLayer;
 use Tester\Assert;
 use Tester\TestCase;
 
 require __DIR__ . '/../../bootstrap.php';
-require __DIR__ . '/../../Mock/CacheItem.php';
-require __DIR__ . '/../../Mock/Cache.php';
-require __DIR__ . '/../../Mock/PersistenceLayer.php';
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
@@ -38,7 +34,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->cache = $cache = new Cache;
         $this->db = $persistenceLayer = new PersistenceLayer;
@@ -48,7 +44,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testGeneratingNKey()
+    public function testGeneratingNKey(): void
     {
         $nKey = ContentProvider::getNKey('space', 'cs');
         Assert::equal('__inline_prefix_space.cs', $nKey);
@@ -57,7 +53,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testSuccessGetFromDb()
+    public function testSuccessGetFromDb(): void
     {
         $this->db->setData(['space.cs' => ['name' => 'test content db']]);
         $content = $this->contentProvider->getContent('space', 'cs', 'name');
@@ -67,7 +63,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testSuccessGetFromCache()
+    public function testSuccessGetFromCache(): void
     {
         $this->cache->setData(['space.cs' => ['name' => 'test content cache']]);
         $content = $this->contentProvider->getContent('space', 'cs', 'name');
@@ -77,7 +73,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testNotFoundGetFromDb()
+    public function testNotFoundGetFromDb(): void
     {
         $this->db->setData(['space.cs' => ['name' => 'test content']]);
         $this->cache->setData(['space.cs' => ['name' => 'test content']]);
@@ -88,7 +84,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testLevelGet()
+    public function testLevelGet(): void
     {
         $this->db->setData(['space.cs' => ['name' => 'test content DB']]);
         $this->cache->setData(['space.cs' => ['name' => 'test content CACHE']]);
@@ -99,7 +95,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testSuccessGetHitL1()
+    public function testSuccessGetHitL1(): void
     {
         $this->db->setData(['space.cs' => ['name' => 'test content db']]);
         $content = $this->contentProvider->getContent('space', 'cs', 'name');
@@ -114,7 +110,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testFallbackGet()
+    public function testFallbackGet(): void
     {
         $this->db->setData(['space.en' => ['name' => 'test content DB']]);
         $contentProvider = new ContentProvider(['fallback' => 'en'], $this->cache, $this->db);
@@ -125,7 +121,7 @@ class ContentProviderTest extends TestCase
     /**
      *
      */
-    public function testSaveContent()
+    public function testSaveContent(): void
     {
         $this->contentProvider->saveContent('space', 'cs', 'name', 'content string');
         Assert::same([], $this->cache->data);

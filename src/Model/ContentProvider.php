@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 /*
  * This file is part of the some package.
@@ -6,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE file.
  */
 
-declare(strict_types = 1);
-
-namespace Pehapkari\InlineEditable\Model;
+namespace XcoreCMS\InlineEditing\Model;
 
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -95,11 +94,13 @@ class ContentProvider
 
         if (is_string($content)) {
             return $content;
-        } elseif ($fallbackLocale === false || $locale === $fallbackLocale) {
-            return '';
-        } else {
-            return $this->getContent($namespace, $fallbackLocale, $name);
         }
+
+        if ($fallbackLocale === false || $locale === $fallbackLocale) {
+            return '';
+        }
+
+        return $this->getContent($namespace, $fallbackLocale, $name);
     }
 
     /**
@@ -108,7 +109,7 @@ class ContentProvider
      * @param string $name
      * @param string $content
      */
-    public function saveContent(string $namespace, string $locale, string $name, string $content)
+    public function saveContent(string $namespace, string $locale, string $name, string $content): void
     {
         $nKey = self::getNKey($namespace, $locale);
         // L1 + L2 clear => L3 write

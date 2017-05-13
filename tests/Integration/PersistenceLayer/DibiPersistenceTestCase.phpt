@@ -1,26 +1,24 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Integration\PersistenceLayer;
+namespace XcoreCMS\InlineEditing\Tests\Integration\PersistenceLayer;
 
 use Dibi\Connection;
-use Pehapkari\InlineEditable\Model\PersistenceLayer\Dibi;
+use XcoreCMS\InlineEditing\Model\PersistenceLayer\Dibi;
 use Tester\Environment;
 
 require __DIR__ . '/../../bootstrap.php';
-require __DIR__ . '/BaseTest.php';
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
  * @dataProvider ../../databases.ini
  */
-class DibiTest extends BaseTest
+class DibiPersistenceTestCase extends BasePersistenceTestCase
 {
     /**
      *
      */
-    protected function initPersistentLayer()
+    protected function initPersistentLayer(): void
     {
         $params = Environment::loadData();
         $params['database'] = $params['dbname'];
@@ -37,4 +35,4 @@ class DibiTest extends BaseTest
     }
 }
 
-(new DibiTest)->run();
+(new DibiPersistenceTestCase)->run();

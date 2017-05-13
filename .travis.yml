@@ -17,7 +17,7 @@ cache:
         - $HOME/.composer/cache
 
 php:
-    - 7.0
+    - 7.1
 
 install:
     - composer install --no-interaction --prefer-source
@@ -33,8 +33,8 @@ before_script:
     - mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("");'
 
 script:
-    - php vendor/bin/phpstan analyse ./src ./tests --level 4
-    - php vendor/bin/phpcs --standard=vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/ruleset.xml ./src ./tests
+    - php vendor/bin/phpstan analyse ./src ./tests --level 6
+    - php vendor/bin/phpcs --standard=PSR2 ./src ./tests
     - php vendor/bin/tester tests -p phpdbg --coverage ./coverage.xml --coverage-src ./src
 
 after_script:

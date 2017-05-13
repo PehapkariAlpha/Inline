@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 /*
  * This file is part of the some package.
@@ -6,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE file.
  */
 
-declare(strict_types = 1);
-
-namespace Pehapkari\InlineEditable\Model;
+namespace XcoreCMS\InlineEditing\Model;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>

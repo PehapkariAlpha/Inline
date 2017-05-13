@@ -1,8 +1,7 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Mock;
+namespace XcoreCMS\InlineEditing\Tests\Mock;
 
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
@@ -13,7 +12,7 @@ use Psr\Cache\CacheItemPoolInterface;
 class Cache implements CacheItemPoolInterface
 {
     /**
-     * @var CacheItem[]
+     * @var CacheItemInterface[]|Cache[]
      */
     public $data = [];
 
@@ -21,7 +20,7 @@ class Cache implements CacheItemPoolInterface
      * @param string $key
      * @return CacheItemInterface
      */
-    public function getItem($key)
+    public function getItem($key): CacheItemInterface
     {
         return $this->data[$key] = $this->data[$key] ?? new CacheItem($key, null, false);
     }
@@ -44,7 +43,7 @@ class Cache implements CacheItemPoolInterface
      * @param string $key
      * @return bool
      */
-    public function hasItem($key)
+    public function hasItem($key): bool
     {
         return $this->getItem($key)->isHit();
     }
@@ -52,7 +51,7 @@ class Cache implements CacheItemPoolInterface
     /**
      * @return bool
      */
-    public function clear()
+    public function clear(): bool
     {
         $this->data = [];
         return true;
@@ -62,7 +61,7 @@ class Cache implements CacheItemPoolInterface
      * @param string $key
      * @return bool
      */
-    public function deleteItem($key)
+    public function deleteItem($key): bool
     {
         unset($this->data[$key]);
         return true;
@@ -72,7 +71,7 @@ class Cache implements CacheItemPoolInterface
      * @param string[] $keys
      * @return bool
      */
-    public function deleteItems(array $keys)
+    public function deleteItems(array $keys): bool
     {
         foreach ($keys as $key) {
             $this->deleteItem($key);
@@ -84,7 +83,7 @@ class Cache implements CacheItemPoolInterface
      * @param CacheItemInterface|CacheItem $item
      * @return bool
      */
-    public function save(CacheItemInterface $item)
+    public function save(CacheItemInterface $item): bool
     {
         $item->isHit = true;
         $this->data[$item->getKey()] = $item;
@@ -100,7 +99,7 @@ class Cache implements CacheItemPoolInterface
      * @return bool
      *   False if the item could not be queued or if a commit was attempted and failed. True otherwise.
      */
-    public function saveDeferred(CacheItemInterface $item)
+    public function saveDeferred(CacheItemInterface $item): bool
     {
         $this->save($item);
         return true;
@@ -109,7 +108,7 @@ class Cache implements CacheItemPoolInterface
     /**
      * @return bool
      */
-    public function commit()
+    public function commit(): bool
     {
         foreach ($this->data as $item) {
             $item->isHit = true;
@@ -122,7 +121,7 @@ class Cache implements CacheItemPoolInterface
      * For debug
      * @param array $data
      */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         foreach ($data as $key => $value) {
             $this->data['__inline_prefix_' . $key] = new CacheItem($key, $value, true);

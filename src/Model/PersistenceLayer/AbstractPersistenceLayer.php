@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 /*
  * This file is part of the some package.
@@ -6,12 +7,10 @@
  * For the full copyright and license information, please view the LICENSE file.
  */
 
-declare(strict_types = 1);
+namespace XcoreCMS\InlineEditing\Model\PersistenceLayer;
 
-namespace Pehapkari\InlineEditable\Model\PersistenceLayer;
-
-use Exception;
-use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
+use LogicException;
+use XcoreCMS\InlineEditing\Model\PersistenceLayerInterface;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
@@ -72,7 +71,7 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
      * @param string $locale
      * @param string $content
      * @return bool
-     * @throws Exception
+     * @throws LogicException
      */
     public function saveContent(string $namespace, string $name, string $locale, string $content): bool
     {
@@ -85,7 +84,7 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
         } elseif ($driver === 'pgsql') {
             $sql = "$sql ON CONFLICT (namespace, name, locale) DO UPDATE SET content = EXCLUDED.content";
         } else {
-            throw new Exception("Unknown driver '$driver'");
+            throw new LogicException("Unknown driver '$driver'");
         }
 
         return $this->updateOrInsertRecord($sql, [$namespace, $name, $locale, $content]);
@@ -96,15 +95,15 @@ abstract class AbstractPersistenceLayer implements PersistenceLayerInterface
      */
     private function detectDbDriver(): string
     {
-        if (!$this->driverName) {
+        if ($this->driverName === null) {
             $driverName = $this->getDriverName();
+
+            $this->driverName = '';
 
             if (strpos($driverName, 'mysql') !== false) {
                 $this->driverName = 'mysql';
             } elseif (strpos($driverName, 'pgsql') !== false || strpos($driverName, 'postgre') !== false) {
                 $this->driverName = 'pgsql';
-            } else {
-                $this->driverName = '';
             }
         }
 

@@ -1,10 +1,9 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Mock;
+namespace XcoreCMS\InlineEditing\Tests\Mock;
 
-use Pehapkari\InlineEditable\Model\PersistenceLayerInterface;
+use XcoreCMS\InlineEditing\Model\PersistenceLayerInterface;
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
@@ -43,7 +42,7 @@ final class PersistenceLayer implements PersistenceLayerInterface
      * For debug
      * @param array $data
      */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = $data;
     }

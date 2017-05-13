@@ -1,26 +1,24 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Pehapkari\InlineEditable\Tests\Integration\PersistenceLayer;
+namespace XcoreCMS\InlineEditing\Tests\Integration\PersistenceLayer;
 
 use Nette\Database\Connection;
-use Pehapkari\InlineEditable\Model\PersistenceLayer\NetteDatabase;
+use XcoreCMS\InlineEditing\Model\PersistenceLayer\NetteDatabase;
 use Tester\Environment;
 
 require __DIR__ . '/../../bootstrap.php';
-require __DIR__ . '/BaseTest.php';
 
 /**
  * @author Jakub Janata <jakubjanata@gmail.com>
  * @dataProvider ../../databases.ini
  */
-class NetteDatabaseTest extends BaseTest
+class NetteDatabasePersistenceTestCase extends BasePersistenceTestCase
 {
     /**
      *
      */
-    protected function initPersistentLayer()
+    protected function initPersistentLayer(): void
     {
         $params = Environment::loadData();
         $connection = new Connection($params['dsn'], $params['user'], $params['password']);
@@ -28,4 +26,4 @@ class NetteDatabaseTest extends BaseTest
     }
 }
 
-(new NetteDatabaseTest)->run();
+(new NetteDatabasePersistenceTestCase)->run();
